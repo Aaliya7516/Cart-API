@@ -65,15 +65,14 @@ class cartResource(Resource):
 
     def patch(self, cart_id):
         carts = cart.query.get_or_404(cart_id)
-
         if 'img' in request.json:
-            carts.title = request.json['img']
+            carts.img = request.json['img']
         if 'name' in request.json:
-            carts.content = request.json['name']
+            carts.name = request.json['name']
         if 'price' in request.json:
-            carts.content = request.json['price']
+            carts.price = request.json['price']
         if 'count' in request.json:
-            carts.content = request.json['count']
+            carts.count = request.json['count']
         
 
         db.session.commit()
