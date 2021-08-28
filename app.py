@@ -60,28 +60,28 @@ class cartListResource(Resource):
 
 class cartResource(Resource):
     def get(self, cart_id):
-        cart = cart.query.get_or_404(cart_id)
-        return cart_schema.dump(cart)
+        carts = cart.query.get_or_404(cart_id)
+        return cart_schema.dump(carts)
 
     def patch(self, cart_id):
-        cart = cart.query.get_or_404(cart_id)
+        carts = cart.query.get_or_404(cart_id)
 
         if 'img' in request.json:
-            cart.title = request.json['img']
+            carts.title = request.json['img']
         if 'name' in request.json:
-            cart.content = request.json['name']
+            carts.content = request.json['name']
         if 'price' in request.json:
-            cart.content = request.json['price']
+            carts.content = request.json['price']
         if 'count' in request.json:
-            cart.content = request.json['count']
+            carts.content = request.json['count']
         
 
         db.session.commit()
-        return cart_schema.dump(cart)
+        return cart_schema.dump(carts)
 
     def delete(self, cart_id):
-        cart = cart.query.get_or_404(cart_id)
-        db.session.delete(cart)
+        carts = cart.query.get_or_404(cart_id)
+        db.session.delete(carts)
         db.session.commit()
         return 'Data deleted Successfully', 204
 
